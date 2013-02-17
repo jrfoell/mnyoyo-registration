@@ -2,7 +2,7 @@
 /*
 Plugin Name: MN Yo-Yo Registration Add-On
 Description: Registration customization for MN Yo-Yo (Uses Gravity Forms with PayPal)
-Version: 1.0
+Version: 2013.1
 Author: justin@foell.org
 */
 

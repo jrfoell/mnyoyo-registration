@@ -4,7 +4,7 @@ var mnYoYo;
 
 mnYoYo = {
 
-	//customize these for your form
+	//customize these for your form (currently 2013)
 	ageCutoff : 14,
 	idPrefix : 'choice_3_',
 	idLadder : 2,
@@ -85,31 +85,36 @@ mnYoYo = {
 		if ( jq_element.is(':checked') ) {
 			$(this.oneAId).removeAttr('checked').attr('disabled', 'disabled');
 			$(this.openId).removeAttr('checked').attr('disabled', 'disabled');
+			if ( $(this.jrId).is(':checked') ) {
+				this.setCost(this.idLadder, 0);
+			}
 		} else {
 			$(this.oneAId).removeAttr('disabled');
-			$(this.openId).removeAttr('disabled');			
-			$(this.jrId).removeAttr('checked');			
+			$(this.openId).removeAttr('disabled');
+			//in 2012 juniors required ladder
+			//$(this.jrId).removeAttr('checked');			
 			this.setCost(this.idLadder, this.ladderCost);
 		}
 		this.calcTotal();
 	},
 
 	onAgeChange : function ( jq_element ) {
-		if ( jq_element.val() == 0 ) {
+		if ( jq_element.val() == 0 ) { //nothing selected
 			$(this.oneAId).removeAttr('disabled').removeAttr('checked');
 			$(this.openId).removeAttr('disabled').removeAttr('checked');
 			$(this.ladderId).removeAttr('disabled').removeAttr('checked');
 			$(this.jrId).removeAttr('disabled');
-		} else if ( jq_element.val() < this.ageCutoff ) {
+		} else if ( jq_element.val() < this.ageCutoff ) { //juniors
 			//$(this.ladderId).attr('checked', 'checked').attr('disabled', 'disabled');
 			$(this.oneAId).removeAttr('checked').attr('disabled', 'disabled');
 			$(this.openId).removeAttr('checked').attr('disabled', 'disabled');
+			$(this.ladderId).removeAttr('disabled');
 			$(this.jrId).removeAttr('disabled');
-		} else {
+		} else { //not junior
 			$(this.oneAId).removeAttr('disabled');
 			$(this.openId).removeAttr('disabled');
 			$(this.jrId).removeAttr('checked').attr('disabled', 'disabled');
-			//this.setCost(this.idLadder, this.ladderCost);
+			this.setCost(this.idLadder, this.ladderCost);
 			//$(this.ladderId).removeAttr('checked').removeAttr('disabled');
 		}
 		this.setCost(this.id1A, this.oneACost);
@@ -121,11 +126,13 @@ mnYoYo = {
 	onJrFreestyleChange : function( jq_element ) {
 		if(jq_element.is(':checked')) {
 			this.setCost(this.idLadder, '0');
-			$(this.ladderId).attr('checked', 'checked');
+			//in 2012 ladder was required for all juniors
+			//$(this.ladderId).attr('checked', 'checked');
 		} else {
 			this.setCost(this.idLadder, this.ladderCost);
 		}
-		this.onLadderChange($(this.ladderId));
+		//in 2012 ladder was required for all juniors
+		//this.onLadderChange($(this.ladderId));
 		this.calcTotal();
 	},
 
