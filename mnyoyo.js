@@ -119,6 +119,8 @@ mnYoYo = {
 		}
 		this.setCost(this.id1A, this.oneACost);
 		this.setCost(this.idOpen, this.openCost);
+		var oneA = $(this.oneAId);
+		this.onUpperDivisionChange(oneA); //check costs if 1A or Open is checked
 		this.onLadderChange($(this.ladderId));
 		this.calcTotal();
 	},
